@@ -46,8 +46,60 @@ def getuser(userId: int): #  automatic type validation provided by FastAPI using
 
 # query parameters
 
+# browser url : http://127.0.0.1:8000/add?a=12&b=13
+
+@app.get("/add")
+def query_params(a:int,b:int = 13): # default params
+    return {
+        "sum is" : a + b
+    }
 
 
 
+# multiple query parameters
+
+from typing import Optional
+
+# username can be a str OR it can be None.
+
+@app.get("/userDetail")
+def query_params(
+    username: Optional[str] = None,
+    email: Optional[str] = None,
+    password: Optional[str] = None
+    ): 
+
+    if not username or  not email or not password:
+        return {
+            "message": "credential is required..."
+        }
+
+    return {
+        "message": "Credentials received",
+        "username": username,
+        "email": email,
+        "password": password
+    }
 
 
+
+# post method
+
+
+from pydantic import BaseModel
+
+class Address(BaseModel):
+    city: str
+
+class User(BaseModel):
+    username: str
+    password: str
+    address : Address
+
+@app.post("/create-user")
+def createuser(user: User):
+    return {
+        "username": user.username,
+        "password": user.password,
+        "address": user.address
+    }
