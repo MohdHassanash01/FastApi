@@ -34,3 +34,24 @@ BaseModel is a class provided by Pydantic. By inheriting from BaseModel, we can 
 
 
 ## what is swagger UI
+
+
+------------------------------------------------
+
+## Lecture code - exceptionHandling.py
+
+### httpException
+
+ HTTPException is used to send an error response to the client.
+
+ raise means stop the execution and send the error response to the client.
+
+
+### custom exception
+
+ a custom exception means an exception that you create yourself for a specific situation in your application.
+
+
+--------------------------------------------------
+
+# Global error handler
